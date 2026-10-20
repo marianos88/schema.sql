@@ -14,18 +14,18 @@ SELECT nombre_producto, categoria FROM inventario_sucursal_norte
 UNION
 SELECT nombre_producto,categoria FROM inventario_sucursal_sur
 
-Respuesta:
-Los productos únicos que comercializa la empresa en toda su red de sucursales son:
--	Auriculares BT Pro
--	Hub USB-C 7p
--	Laptop Basic 14
--	Laptop Pro 15
--	Monitor 4K 27"
--	Mouse Inalámbrico
--	Parlante Bluetooth
--	SSD Externo 1TB
--	Teclado Mecánico
--	Webcam HD 1080p
+-- Respuesta:
+-- Los productos únicos que comercializa la empresa en toda su red de sucursales son:
+-- -	Auriculares BT Pro
+-- -	Hub USB-C 7p
+-- -	Laptop Basic 14
+-- -	Laptop Pro 15
+-- -	Monitor 4K 27"
+-- -	Mouse Inalámbrico
+-- -	Parlante Bluetooth
+-- -	SSD Externo 1TB
+-- -	Teclado Mecánico
+-- -	Webcam HD 1080p
 
 -- ── CONSULTA 2: UNION ALL ────────────────
 -- Auditoría de Stock Total
@@ -40,8 +40,8 @@ FROM (
     SELECT nombre_producto, stock FROM inventario_sucursal_sur
 ) AS stock_total;
 
-Respuesta:
-El inventario consolidado cuenta con un total de 14 registros físicos (filas) entre ambas sucursales, lo que representa un stock físico real de 200 unidades de producto disponibles en total.
+-- Respuesta:
+-- El inventario consolidado cuenta con un total de 14 registros físicos (filas) entre ambas sucursales, lo que representa un stock físico real de 200 unidades de producto disponibles en total.
 
 -- ── CONSULTA 3: COMPARACIÓN DE RESULTADOS ─
 -- Ejecutá estas dos consultas para comparar cuántas filas
@@ -56,8 +56,8 @@ UNION
 SELECT nombre_producto,categoria FROM inventario_sucursal_sur
 ) AS resultado_union;
 
-  Respuesta:
-A través de esta consulta devuelve la cantidad de registros (filas) sin duplicados.
+-- Respuesta:
+-- A través de esta consulta devuelve la cantidad de registros (filas) sin duplicados.
 
 
 SELECT COUNT(*) AS filas_union_all FROM (/* tu UNION ALL aquí */) AS resultado_union_all;
@@ -68,5 +68,5 @@ UNION ALL
 SELECT nombre_producto,categoria, stock FROM inventario_sucursal_sur
 ) AS resultado_union_all;
 
-  Respuesta:
-A través de esta consulta devuelve la cantidad total de registros (filas), incluyendo los duplicados.
+-- Respuesta:
+-- A través de esta consulta devuelve la cantidad total de registros (filas), incluyendo los duplicados.
