@@ -58,6 +58,7 @@ SELECT nombre_producto, categoria FROM inventario_sucursal_norte
 UNION
 SELECT nombre_producto,categoria FROM inventario_sucursal_sur
 ) AS resultado_union;
+
 Respuesta:
 A través de esta consulta devuelve la cantidad de registros (filas) sin duplicados.
 
@@ -68,5 +69,6 @@ FROM (SELECT nombre_producto, categoria, stock FROM inventario_sucursal_norte
 UNION ALL
 SELECT nombre_producto,categoria, stock FROM inventario_sucursal_sur
 ) AS resultado_union_all;
+
 Respuesta:
 A través de esta consulta devuelve la cantidad total de registros (filas), incluyendo los duplicados.
