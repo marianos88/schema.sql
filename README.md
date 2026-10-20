@@ -1,40 +1,12 @@
--- ══════════════════════════════════════════
--- RetailChain — Inventario por Sucursal
--- ══════════════════════════════════════════
-
-DROP TABLE IF EXISTS inventario_sucursal_norte;
-DROP TABLE IF EXISTS inventario_sucursal_sur;
-
-CREATE TABLE inventario_sucursal_norte (
-    id_producto     INT,
-    nombre_producto VARCHAR(100) NOT NULL,
-    categoria       VARCHAR(50),
-    stock           INT          NOT NULL
-);
-
-CREATE TABLE inventario_sucursal_sur (
-    id_producto     INT,
-    nombre_producto VARCHAR(100) NOT NULL,
-    categoria       VARCHAR(50),
-    stock           INT          NOT NULL
-);
-
--- Sucursal Norte
-INSERT INTO inventario_sucursal_norte VALUES (101, 'Laptop Pro 15',      'Computación',  8);
-INSERT INTO inventario_sucursal_norte VALUES (102, 'Mouse Inalámbrico',  'Accesorios',  30);
-INSERT INTO inventario_sucursal_norte VALUES (103, 'Monitor 4K 27"',     'Computación',  5);
-INSERT INTO inventario_sucursal_norte VALUES (104, 'Teclado Mecánico',   'Accesorios',  20);
-INSERT INTO inventario_sucursal_norte VALUES (105, 'Auriculares BT Pro', 'Audio',       15);
--- Estos productos también existen en la Sucursal Sur (importantes para UNION)
-INSERT INTO inventario_sucursal_norte VALUES (106, 'SSD Externo 1TB',    'Almacenamiento', 10);
-INSERT INTO inventario_sucursal_norte VALUES (107, 'Webcam HD 1080p',    'Accesorios',  12);
-
--- Sucursal Sur
-INSERT INTO inventario_sucursal_sur VALUES (103, 'Monitor 4K 27"',     'Computación',   3);
-INSERT INTO inventario_sucursal_sur VALUES (104, 'Teclado Mecánico',   'Accesorios',   18);
-INSERT INTO inventario_sucursal_sur VALUES (106, 'SSD Externo 1TB',    'Almacenamiento', 7);
--- Estos productos son exclusivos de la Sucursal Sur
-INSERT INTO inventario_sucursal_sur VALUES (108, 'Laptop Basic 14',    'Computación',   6);
-INSERT INTO inventario_sucursal_sur VALUES (109, 'Parlante Bluetooth', 'Audio',        22);
-INSERT INTO inventario_sucursal_sur VALUES (110, 'Hub USB-C 7p',       'Accesorios',   35);
-INSERT INTO inventario_sucursal_sur VALUES (111, 'Webcam HD 1080p',    'Accesorios',    9);
+--Documentación de README--
+•	¿Cuántas filas devuelve cada consulta y por qué son distintas? Explicá con ejemplos concretos de los datos qué filas se eliminaron con UNION.
+Las consultas con UNION devuelve la los registros sin duplicados, en cambio las consultas con UNION ALL devuelve la totalidad de registros, incluyendo duplicados como:
+-	Monitor 4K 27”
+-	Teclado Mecánico
+•	¿Por qué UNION ALL es más eficiente que UNION? ¿Qué operación adicional realiza UNION internamente que consume más recursos?
+UNION ALL contabiliza la totalidad de registros, lo que resulta útil al querer saber la totalidad de productos que se tienen en stock (y por ende no pierde tiempo ni memoria filtrando estos datos), a comparación de UNION que cruza la información de las tablas y filtra aquellos productos que se repiten (utilizando más tiempo y memoria realizando dicha tarea).
+•	¿En qué casos de negocio usarías cada uno? Dá al menos dos ejemplos reales distintos a los del ejercicio.
+El uso de UNION es útil por ejemplo para campañas de Marketing, el envío de mails masivos puede llegar a todos los contactos y de esta manera se puede filtrar entre un usuario registrado en “usuarios_newsletter” y ser “cliente”, evitando de esta manera que le llegue 2 veces.
+El uso de UNION ALL puede ser útil en migraciones de registros históricos, donde se unifica la tabla de clientes activos con los clientes dados de baja. El uso de UNION ALL es más rápido porque el motor de la base de datos no gasta tiempo ni memoria filtrando nombres repetidos.
+•	¿Qué pasa si las columnas de ambas consultas no coinciden en número o tipo? ¿Qué error genera SQL?
+Si las columnas no coinciden, SQL arroja un error de sintaxis o de conversión.
